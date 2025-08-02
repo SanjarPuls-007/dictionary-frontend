@@ -1,0 +1,119 @@
+<!-- /pages/section.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Section Management</title>
+	<link rel="stylesheet" href="../css/sec-style.css" />
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<aside class="sidebar">
+		<div class="sidebar-header">
+			<img src="./icons/LOGO.png" alt="Sidebar Image" />
+		</div>
+		<nav class="sidebar-nav">
+			<a href="dictionary.html"><img class="icon" src="./icons/dictionary.svg" />Lug'atlar</a>
+			<a href="section.html" class="active"><img class="icon" src="./icons/section copy.svg" />Bo'limlar</a>
+			<a href="category.html"><img class="icon" src="./icons/category.svg" />Kategoriyalar</a>
+			<a href="words.html"><img class="icon" src="./icons/words.svg" />So'zlar</a>
+			<a href="../index.html"><img class="icon" src="./icons/logout.svg" />Chiqish</a>
+		</nav>
+	</aside>
+
+	<!-- Main content -->
+	<main class="main-content">
+		<header>
+			<h1>Bo'limlar</h1>
+			<div class="actions">
+				<select id="dictionaryFilter"></select>
+				<input type="text" id="searchInput" placeholder="Bo'limlarni qidirish..." />
+				<button id="addSectionBtn">Bo'lim qo'shish</button>
+			</div>
+		</header>
+
+		<!-- Alerts -->
+		<div id="alertContainer" class="hidden"></div>
+
+		<!-- Section Table -->
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nomi</th>
+					<th>Lug'at</th>
+					<th>Rasm</th>
+					<th>Amallar</th>
+				</tr>
+			</thead>
+			<tbody id="sectionTableBody"></tbody>
+		</table>
+
+		<!-- Pagination -->
+		<div id="pagination" class="pagination"></div>
+	</main>
+
+	<!-- Add/Edit Modal -->
+	<div id="sectionModal" class="modal hidden">
+		<div class="modal-content">
+			<span class="modal-close" id="modalCloseBtn">&times;</span>
+			<h2 id="modalTitle">Bo'lim qo'shish</h2>
+
+			<form id="sectionForm">
+				<!-- Hidden field for editing -->
+				<input type="hidden" id="sectionId" />
+
+				<!-- Section name -->
+				<label for="sectionName">Bo'lim Nomi</label>
+				<input type="text" id="sectionName" name="name" required />
+				<br />
+				<!-- Dictionary selection -->
+				<label for="dictionarySelect">Lug'atni tanlang</label>
+				<select id="dictionarySelect" name="related_dic">
+					<option value="">Lug'atni tanlang</option>
+					<!-- Options will be populated dynamically -->
+				</select>
+
+				<!-- Existing image preview -->
+				<div id="existingImageContainer" class="hidden">
+					<label>Joriy rasm:</label>
+					<img id="existingImage" src="" alt="Current Image"
+						style="max-width: 150px; display: block; margin-bottom: 10px;" />
+					<button type="button" id="deleteImageBtn">Rasmni o'chirish</button>
+				</div>
+
+				<!-- Upload new image -->
+				<div id="uploadInputContainer">
+					<label for="imageUpload">Rasm yuklash</label>
+					<input type="file" id="imageUpload" name="image" accept="image/*" />
+				</div>
+
+				<!-- Modal action buttons -->
+				<div class="modal-actions">
+					<button type="submit">Saqlash</button>
+					<button type="button" id="cancelModalBtn">Bekor qilish</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		// Modal close with X or background click
+		document.addEventListener('DOMContentLoaded', () => {
+			const modal = document.getElementById('sectionModal')
+			document.getElementById('modalCloseBtn').onclick = () => modal.classList.add('hidden')
+			document.addEventListener('keydown', (e) => {
+				if (e.key === 'Escape') modal.classList.add('hidden')
+			})
+			modal.addEventListener('click', (e) => {
+				if (e.target === modal) modal.classList.add('hidden')
+			})
+		});
+	</script>
+	<script src="../js/section.js"></script>
+</body>
+
+</html>

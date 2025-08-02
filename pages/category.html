@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Categories</title>
+	<link rel="stylesheet" href="../css/cat-style.css" />
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<aside class="sidebar">
+		<div class="sidebar-header">
+			<img src="./icons/LOGO.png" alt="Sidebar Image" />
+		</div>
+		<nav class="sidebar-nav">
+			<a href="dictionary.html"><img class="icon" src="./icons/dictionary.svg" />Lug'atlar</a>
+			<a href="section.html"><img class="icon" src="./icons/section.svg" />Bo'limlar</a>
+			<a href="category.html" class="active"><img class="icon" src="./icons/category copy.svg" />Kategoriyalar</a>
+			<a href="words.html"><img class="icon" src="./icons/words.svg" />So'zlar</a>
+			<a href="../index.html"><img class="icon" src="./icons/logout.svg" />Chiqish</a>
+		</nav>
+	</aside>
+
+	<!-- Main Content -->
+	<main class="main-content">
+		<div class="page-header">
+			<h1>Kategoriyalar</h1>
+			<div class="actions">
+				<select id="dictionaryFilter">
+					<option value="all">Barcha lug'atlar</option>
+				</select>
+				<select id="sectionFilter">
+					<option value="all">Barcha bo'limlar</option>
+				</select>
+				<input type="text" id="searchInput" placeholder="Kategoriyalarni qidirish..." />
+				<button id="addCategoryBtn">Kategoriya qo'shish</button>
+			</div>
+		</div>
+
+		<!-- Alert -->
+		<div id="alertContainer" class="alert hidden"></div>
+
+		<!-- Table -->
+		<table>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Nomi</th>
+					<th>Bo'lim</th>
+					<th>Lug'at</th>
+					<th>Amallar</th>
+				</tr>
+			</thead>
+			<tbody id="categoryTableBody"></tbody>
+		</table>
+
+		<!-- Pagination -->
+		<div id="pagination" class="pagination"></div>
+	</main>
+
+	<!-- Modal -->
+	<div id="categoryModal" class="modal hidden">
+		<div class="modal-content">
+			<span id="modalCloseBtn" class="modal-close">&times;</span>
+			<h2 id="modalTitle">Kategoriya qo'shish</h2>
+			<form id="categoryForm">
+				<label for="categoryName">Kategoriya nomi</label>
+				<input type="text" id="categoryName" name="name" required />
+
+				<label for="dictionarySelect">Lug'atni tanlang</label>
+				<select id="dictionarySelect" name="dictionaryId" required></select>
+
+				<label for="sectionSelect">Bo'limni tanlang</label>
+				<select id="sectionSelect" name="sectionId" required></select>
+
+				<div class="modal-actions">
+					<button type="submit">Saqlash</button>
+					<button type="button" id="cancelModalBtn">Bekor qilish</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../js/category.js"></script>
+</body>
+
+</html>

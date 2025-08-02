@@ -1,0 +1,126 @@
+<!-- /pages/words.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>So'zlar</title>
+	<link rel="stylesheet" href="../css/wor-style.css" />
+</head>
+
+<body>
+	<div class="container">
+		<!-- Sidebar -->
+		<aside class="sidebar">
+			<div class="sidebar-header">
+				<img src="./icons/LOGO.png" alt="Sidebar Image" />
+			</div>
+			<nav class="sidebar-nav">
+				<a href="dictionary.html"><img class="icon" src="./icons/dictionary.svg" />Lug'atlar</a>
+				<a href="section.html"><img class="icon" src="./icons/section.svg" />Bo'limlar</a>
+				<a href="category.html"><img class="icon" src="./icons/category.svg" />Kategoriyalar</a>
+				<a href="words.html" class="active"><img class="icon" src="./icons/words copy.svg" />So'zlar</a>
+				<a href="../index.html"><img class="icon" src="./icons/logout.svg" />Chiqish</a>
+			</nav>
+		</aside>
+
+		<!-- Main Content -->
+		<main class="main-content">
+			<header class="page-header">
+				<h1>So'zlar</h1>
+				<button id="addWordBtn">So'z qo'shish</button>
+			</header>
+
+			<!-- Filters -->
+			<div class="filters">
+				<select id="dictionaryFilter">
+					<option value="">Barcha lug'atlar</option>
+				</select>
+				<select id="sectionFilter">
+					<option value="">Barcha bo'limlar</option>
+				</select>
+				<select id="categoryFilter">
+					<option value="">Barcha kategoriyalar</option>
+				</select>
+				<input type="text" id="searchInput" placeholder="So'zlarni qidirish..." />
+			</div>
+
+			<div id="alertContainer" class="hidden"></div>
+
+			<!-- Table -->
+			<table class="data-table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>So'z</th>
+						<th>Lug'at</th>
+						<th>Bo'lim</th>
+						<th>Kategoriya</th>
+						<th>Rasm</th>
+						<th>Amallar</th>
+					</tr>
+				</thead>
+				<tbody id="wordsTableBody">
+					<!-- Dynamic -->
+				</tbody>
+			</table>
+
+			<!-- Pagination -->
+			<div class="pagination" id="pagination"></div>
+		</main>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal hidden" id="wordModal">
+		<div class="modal-content">
+			<h2 id="modalTitle">Add Word</h2>
+			<form id="wordForm">
+				<input type="hidden" id="wordId" />
+				<input type="text" id="wordInput" placeholder="So'z" required />
+				<textarea id="descriptionInput" placeholder="Tavsif"></textarea>
+				<select id="dictionarySelect" required></select>
+				<select id="sectionSelect" required></select>
+				<select id="categorySelect" required></select>
+
+				<!-- Image upload -->
+				<div id="imageUploadSection">
+					<div id="existingImageContainer" class="hidden">
+						<img id="existingImage" src="" alt="Joriy rasm" />
+						<button type="button" id="deleteImageBtn">Rasmni o'chirish</button>
+					</div>
+					<div id="uploadInputContainer">
+						<label for="imageUpload">Rasm yuklash</label>
+						<input type="file" id="imageUpload" name="image" accept="image/*" />
+					</div>
+				</div>
+
+				<div class="modal-actions">
+					<button id="saveWordBtn" type="submit">Saqlash</button>
+					<button type="button" id="closeModalBtn">Bekor qilish</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Word Detail Modal -->
+	<div class="modal hidden" id="wordDetailModal">
+		<div class="modal-content">
+			<h2>So'z Tafsilotlari</h2>
+			<p><strong>So'z:</strong> <span id="detailWord"></span></p>
+			<p><strong>Tavsif:</strong> <span id="detailDesc"></span></p>
+			<p><strong>Lug'at:</strong> <span id="detailDictionary"></span></p>
+			<p><strong>Bo'lim:</strong> <span id="detailSection"></span></p>
+			<p><strong>Kategoriya:</strong> <span id="detailCategory"></span></p>
+			<div><strong>Rasm:</strong><br><img id="detailImage" src="" alt="No image" width="150" /></div>
+			<div class="modal-actions">
+				<button type="button" id="closeDetailModalBtn">Yopish</button>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="../js/words.js"></script>
+</body>
+
+</html>

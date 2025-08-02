@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Lo'g'atlar Loyihasi</title>
+	<link rel="stylesheet" href="../css/dic-style.css" />
+</head>
+
+<body>
+	<!-- Sidebar -->
+	<aside class="sidebar">
+		<div class="sidebar-header">
+			<img src="./icons/LOGO.png" alt="Sidebar Image" />
+		</div>
+		<nav class="sidebar-nav">
+			<a href="dictionary.html" class="active"><img class="icon" src="./icons/dictionary copy.svg" />Lug'atlar</a>
+			<a href="section.html"><img class="icon" src="./icons/section.svg" />Bo'limlar</a>
+			<a href="category.html"><img class="icon" src="./icons/category.svg" />Kategoriyalar</a>
+			<a href="words.html"><img class="icon" src="./icons/words.svg" />So'zlar</a>
+			<a href="../index.html"><img class="icon" src="./icons/logout.svg" />Chiqish</a>
+		</nav>
+	</aside>
+
+	<!-- Main Content -->
+	<main class="main-content">
+		<!-- Page Header -->
+		<div class="page-header">
+			<h1 class="page-title">Lug'atlar</h1>
+			<div class="page-actions">
+
+				<select id="typeFilter">
+					<option value="all">Barchasi</option>
+					<option value="historical">Tarixiy</option>
+					<option value="modern">Zamonaviy</option>
+				</select>
+				<input type="text" id="searchInput" placeholder="Lug'atlarni qidirish..." />
+				<button id="addDictionaryBtn">Lug'at qo'shish</button>
+			</div>
+		</div>
+
+		<!-- Table Section -->
+		<section class="table-wrapper">
+			<table class="data-table">
+				<thead>
+					<tr>
+						<th>#</th>
+						<th>Nomi</th>
+						<th>Tavsif</th>
+						<th>Rasm</th>
+						<th>Amallar</th>
+					</tr>
+				</thead>
+				<tbody id="dictionaryList">
+					<!-- Dictionary rows injected dynamically -->
+				</tbody>
+			</table>
+		</section>
+
+		<!-- Pagination -->
+		<div class="pagination" id="pagination"></div>
+	</main>
+
+	<!-- Modal: Add/Edit Dictionary -->
+	<div class="modal" id="dictionaryModal">
+		<div class="modal-content">
+			<h2 id="modalTitle">Barchasi</h2>
+			<form id="dictionaryForm">
+				<input type="hidden" id="dictionaryId" />
+
+				<label for="dictionaryName">Nomi:</label>
+				<input type="text" id="dictionaryName" required />
+
+				<label>Turi:</label>
+				<div class="checkbox-group">
+					<label><input type="radio" name="dictionaryType" value="historical" required /> Tarixiy</label>
+					<label><input type="radio" name="dictionaryType" value="modern" required /> Zamonaviy</label>
+				</div>
+
+				<label for="dictionaryDescription">Lug'at:</label>
+				<textarea id="dictionaryDescription" rows="3"></textarea>
+
+				<!-- File Upload -->
+				<label for="dictionaryImage">Rasm:</label>
+				<div id="imageUploadContainer">
+					<input type="file" id="dictionaryImage" accept="image/*" />
+				</div>
+
+				<!-- Existing Image Preview -->
+				<div id="existingImageContainer" class="hidden">
+					<img id="existingImagePreview" src="" alt="Current Image"
+						style="max-width: 150px; display: block; margin-bottom: 10px;" />
+					<button type="button" id="deleteImageBtn">Rasmni o'chirish</button>
+				</div>
+
+				<!-- Modal Buttons -->
+				<div class="modal-actions">
+					<button type="submit">Saqlash</button>
+					<button type="button" id="cancelModalBtn">Bekor qilish</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<script src="../js/dictionary.js"></script>
+</body>
+
+</html>
